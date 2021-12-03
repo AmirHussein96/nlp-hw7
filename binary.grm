@@ -5,3 +5,8 @@ export First = Zero Zero* Bit* One One One One?;
 export Second = Zero+ Bit* One{3,4};
 export Disagreements = Optimize[ (First - Second) | (Second - First) ];
 export Triplets = (Zero* | (One{3} One*))*;
+export NotPillars = Zero* One Zero*(Zero* One Zero* One Zero*)*;
+#export Oddlets = Zero* One Zero*(Zero* One Zero* One Zero*)*;
+export Oddlets = Zero* One ((Zero One) | (One{2})* )* Zero*;
+
+
