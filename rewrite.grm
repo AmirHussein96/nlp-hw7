@@ -1,0 +1,21 @@
+
+Zero = "0";
+One = "1";
+Bit = Zero | One;
+Even = Bit* Zero;
+Odd = Bit* One;
+EvenR = Zero Bit*;
+OddR = One Bit*;
+
+Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+
+export BitFlip1 = ((Zero:One)|(One:Zero))*;
+export Cross = Optimize["a" (("b":"x")* | ("c"+ : "y"*) | ("":"fric")) "a"];
+export Parity1 = ((Even:Zero)| (Odd:One));
+export Parity2 = ((EvenR:Zero)| (OddR:One));
+export Parity3 = CDRewrite[((Even:Zero)| (Odd:One)), "[BOS]", "[EOS]", Bit*];
+export BitFlip2 = CDRewrite[((Zero:One)|(One:Zero)), Digit*, Digit*, Digit*];
+export UnParity = Invert[Parity3];
+export Split = CDRewrite["":" ", Bit+, Bit+ ,   (Bit | (" "))* | "", 'ltr', 'opt'];
+Three = Bit+ " " Bit+ " " Bit+;
+export SplitThree = Split @ Three;
